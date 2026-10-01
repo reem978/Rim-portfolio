@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rim Hazimeh | IT Graduate & Web Developer</title>
+  <meta name="description" content="Portfolio of Rim Hazimeh, IT graduate and web developer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVIGATION: fixed bar with links and a hamburger button for mobile -->
+  <header class="navbar" id="navbar">
+    <a href="#home" class="logo">Rim Hazimeh</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME: introduction, typing text, buttons and photo -->
+    <section id="home" class="section hero">
+      <div class="hero-text reveal">
+        <h1>Hi, I'm Rim Hazimeh</h1>
+        <h2>IT Graduate &amp; Web Developer</h2>
+        <p class="typing-line"><span id="typingText"></span><span class="cursor">|</span></p>
+        <p>IT graduate passionate about web development, networking, and building practical digital solutions.</p>
+        <div class="buttons">
+          <a href="#projects" class="btn btn-primary">View My Projects</a>
+          <a href="#contact" class="btn btn-outline">Contact Me</a>
+        </div>
+      </div>
+      <div class="hero-photo reveal">
+        <div class="photo-ring"></div>
+        <!-- Put your photo at images/rim.jpg -->
+        <img src="mypicture.jpg" alt="Portrait of Rim Hazimeh">
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2 class="section-title reveal">About Me</h2>
+      <div class="about-grid">
+        <p class="reveal">I'm an entry-level web developer who is always learning. I'm interested in web development, networking, and creating practical applications. My projects so far, from small JavaScript apps to an Arduino-based safety system, have taught me how to turn an idea into something that works.</p>
+        <ul class="facts reveal">
+          <li><strong>Name</strong> Rim Hazimeh</li>
+          <li><strong>Title</strong> IT Graduate</li>
+          <li><strong>University</strong> LIU, Lebanese International University</li>
+          <li><strong>Graduation</strong> 2026</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <h2 class="section-title reveal">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card reveal"><span class="skill-icon">&lt;/&gt;</span><h3>HTML</h3></div>
+        <div class="skill-card reveal"><span class="skill-icon">{ }</span><h3>CSS</h3></div>
+        <div class="skill-card reveal"><span class="skill-icon">JS</span><h3>JavaScript</h3></div>
+        <div class="skill-card reveal"><span class="skill-icon">&#128279;</span><h3>Networking</h3></div>
+        <div class="skill-card reveal"><span class="skill-icon">&#9889;</span><h3>Arduino</h3></div>
+        <div class="skill-card reveal"><span class="skill-icon">&#9095;</span><h3>Git / GitHub</h3></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS: replace each href="#" and remove "disabled" when a link is ready -->
+    <section id="projects" class="section">
+      <h2 class="section-title reveal">Projects</h2>
+      <div class="projects-grid">
+
+        <article class="project-card reveal">
+          <h3>JavaScript Calculator</h3>
+          <p>A calculator that handles basic operations and shows clear messages for invalid input.</p>
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>ES6 Modules</li><li>Error Handling</li></ul>
+          <a href="#" class="btn btn-small disabled" aria-disabled="true">Link coming soon</a>
+        </article>
+
+        <article class="project-card reveal">
+          <h3>Expense Tracker</h3>
+          <p>Add and review expenses, with the list kept in JavaScript arrays and objects.</p>
+          <ul class="tags"><li>JavaScript</li><li>DOM</li><li>Arrays</li><li>Objects</li></ul>
+          <a href="#" class="btn btn-small disabled" aria-disabled="true">Link coming soon</a>
+        </article>
+
+        <article class="project-card reveal">
+          <h3>Student Management System</h3>
+          <p>Manage student records: add, view and organize them in the browser.</p>
+          <ul class="tags"><li>JavaScript</li><li>Objects</li><li>Arrays</li><li>DOM</li></ul>
+          <a href="#" class="btn btn-small disabled" aria-disabled="true">Link coming soon</a>
+        </article>
+
+        <article class="project-card reveal">
+          <h3>Library Management System</h3>
+          <p>Keep track of books and their status using functions and objects.</p>
+          <ul class="tags"><li>JavaScript</li><li>Objects</li><li>Functions</li><li>DOM</li></ul>
+          <a href="#" class="btn btn-small disabled" aria-disabled="true">Link coming soon</a>
+        </article>
+
+        <article class="project-card reveal">
+          <h3>Task Manager</h3>
+          <p>Create tasks, filter them by status, and validate input before saving.</p>
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>DOM</li><li>Events</li><li>ES6 Modules</li><li>Filtering</li><li>Validation</li></ul>
+          <a href="#" class="btn btn-small disabled" aria-disabled="true">Link coming soon</a>
+        </article>
+
+        <article class="project-card reveal">
+          <h3>Smart Fire &amp; Gas Detection System</h3>
+          <p>Sensors detect smoke, gas and temperature, send readings to the cloud, show them on a live dashboard, and send alerts to Telegram.</p>
+          <ul class="tags"><li>ESP8266 NodeMCU</li><li>MQ-2</li><li>DHT11</li><li>Firebase Realtime Database</li><li>JavaScript dashboard</li><li>Chart.js</li><li>Telegram Bot</li></ul>
+          <a href="#" class="btn btn-small disabled" aria-disabled="true">Link coming soon</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h2 class="section-title reveal">Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p>I'm open to junior web development opportunities. Send me a message or find me online.</p>
+          <div class="buttons">
+            <a href="mailto:reem225@gmail.com" class="btn btn-primary">Email Me</a>
+            <a href="https://www.linkedin.com/in/rim-hazimeh-571516375/" class="btn btn-outline" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+        <form id="contactForm" class="contact-form reveal" novalidate>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" autocomplete="name">
+          <span class="error" id="nameError"></span>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email">
+          <span class="error" id="emailError"></span>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5"></textarea>
+          <span class="error" id="messageError"></span>
+
+          <button type="submit" class="btn btn-primary">Send</button>
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><p>&copy; 2026 Rim Hazimeh</p></footer>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
