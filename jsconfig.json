@@ -1,4 +1,1 @@
-{
-  "compilerOptions": { "module": "commonjs", "checkJs": false },
-  "exclude": ["node_modules"]
-}
+
