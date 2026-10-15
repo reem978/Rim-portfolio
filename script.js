@@ -1,4 +1,3 @@
-// Wait until the page is ready before running any code
 document.addEventListener("DOMContentLoaded", () => {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -67,6 +66,75 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.15 });
   revealElements.forEach((element) => revealObserver.observe(element));
 
+  // ---------- 4b. Load projects from the backend ----------
+  // Address of the backend API (change this when you deploy it)
+  const API_URL = "http://localhost:5000/api";
+  const projectsGrid = document.querySelector(".projects-grid");
+
+  // Only allow normal web links, so a bad value in the database can't run code
+  function isSafeUrl(url) {
+    return /^https?:\/\//i.test(url);
+  }
+
+  // Build one project card. textContent is used (not innerHTML) so text can't inject HTML.
+  function createProjectCard(project) {
+    const card = document.createElement("article");
+    card.className = "project-card reveal";
+
+    const title = document.createElement("h3");
+    title.textContent = project.title;
+
+    const description = document.createElement("p");
+    description.textContent = project.description;
+
+    const tags = document.createElement("ul");
+    tags.className = "tags";
+    project.technologies.forEach((technology) => {
+      const tag = document.createElement("li");
+      tag.textContent = technology;
+      tags.appendChild(tag);
+    });
+
+    const link = document.createElement("a");
+    if (project.url && isSafeUrl(project.url)) {
+      link.href = project.url;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.className = "btn btn-small";
+      link.textContent = "View Live 🚀";
+    } else {
+      // No real link yet: show a disabled button
+      link.href = "#";
+      link.className = "btn btn-small disabled";
+      link.setAttribute("aria-disabled", "true");
+      link.textContent = "Link coming soon";
+    }
+
+    card.append(title, description, tags, link);
+    return card;
+  }
+
+  async function loadProjects() {
+    try {
+      const response = await fetch(API_URL + "/projects");
+      if (!response.ok) throw new Error("Could not load projects");
+      const projects = await response.json();
+      if (!Array.isArray(projects) || projects.length === 0) return;
+
+      // Replace the built-in cards with the ones from the database
+      projectsGrid.replaceChildren();
+      projects.forEach((project) => {
+        const card = createProjectCard(project);
+        projectsGrid.appendChild(card);
+        revealObserver.observe(card);  // so the scroll animation still works
+      });
+    } catch (error) {
+      // Backend offline: keep the cards already written in index.html
+      console.log("Projects API unavailable, showing the built-in projects.");
+    }
+  }
+  loadProjects();
+
   // ---------- 5. Active nav link based on current section ----------
   const sections = document.querySelectorAll("main section");
   const sectionObserver = new IntersectionObserver((entries) => {
@@ -117,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return isValid;
   }
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();  // stop the page from reloading
     const name = form.name.value.trim();
     const email = form.email.value.trim();
@@ -126,13 +194,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!validateForm(name, email, message)) return;
 
-    // There is no backend, so we open the visitor's email app with the message filled in.
-    const subject = encodeURIComponent("Portfolio message from " + name);
-    const body = encodeURIComponent(message + "\n\nFrom: " + name + " (" + email + ")");
-    window.location.href = "mailto:" + RECIPIENT_EMAIL + "?subject=" + subject + "&body=" + body;
+    const sendButton = form.querySelector("button[type='submit']");
+    sendButton.disabled = true;
+    formStatus.textContent = "Sending...";
 
-    formStatus.textContent = "Thank you! Your message is ready to be sent in your email app.";
-    form.reset();
+    try {
+      // Send the message to the backend, which saves it in MongoDB
+      const response = await fetch(API_URL + "/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      if (!response.ok) throw new Error("Server rejected the message");
+
+      formStatus.textContent = "Thank you! Your message was sent.";
+      form.reset();
+    } catch (error) {
+      // Backend is offline or failed: fall back to the visitor's email app
+      const subject = encodeURIComponent("Portfolio message from " + name);
+      const body = encodeURIComponent(message + "\n\nFrom: " + name + " (" + email + ")");
+      window.location.href = "mailto:" + RECIPIENT_EMAIL + "?subject=" + subject + "&body=" + body;
+      formStatus.textContent = "The server is unavailable, so your message is ready to be sent in your email app.";
+    } finally {
+      sendButton.disabled = false;
+    }
   });
 
   // Clear an error as soon as the visitor starts fixing it
