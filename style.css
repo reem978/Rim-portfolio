@@ -1,4 +1,3 @@
-/* ---------- Design tokens: change colors and fonts here ---------- */
 :root {
   --ink: #3a2036;          /* deep plum for text */
   --muted: #7a6475;        /* softer text */
@@ -155,3 +154,4 @@ a { color: inherit; text-decoration: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
