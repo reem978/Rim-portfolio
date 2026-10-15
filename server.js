@@ -19,7 +19,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Allow the portfolio page (Live Server runs on port 5500) to call this API
-app.use(cors({ origin: (process.env.CLIENT_ORIGIN || "http://localhost:10000").split(",") }));
+app.use(cors({ origin: (process.env.CLIENT_ORIGIN || "https://rim-portfolio.onrender.com/ap").split(",") }));
 app.use(express.json({ limit: "10kb" }));
 
 // Basic spam protection: max 10 contact messages per 15 minutes per visitor
