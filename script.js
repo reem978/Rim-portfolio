@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---------- 4b. Load projects from the backend ----------
   // Address of the backend API (change this when you deploy it)
-  const API_URL = "http://localhost:10000";
+  const API_URL = "https://rim-portfolio.onrender.com/ap;
   const projectsGrid = document.querySelector(".projects-grid");
 
   // Only allow normal web links, so a bad value in the database can't run code
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function loadProjects() {
     try {
-      const response = await fetch(API_URL + "/api/projects");
+      const response = await fetch(`${API_URL}/projects`);;
       if (!response.ok) throw new Error("Could not load projects");
       const projects = await response.json();
       if (!Array.isArray(projects) || projects.length === 0) return;
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // Send the message to the backend, which saves it in MongoDB
-     const response = await fetch(API_URL + "/api/contact", {
+     const response = await fetch(`${API_URL}/contact`); {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
