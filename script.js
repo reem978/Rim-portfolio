@@ -200,13 +200,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // Send the message to the backend, which saves it in MongoDB
-   
 const response = await fetch(`${API_URL}/contact`, {
   method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({ name, email, message })
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ name, email, message }),
 });
 
       if (!response.ok) throw new Error("Server rejected the message");
