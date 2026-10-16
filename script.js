@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---------- 4b. Load projects from the backend ----------
   // Address of the backend API (change this when you deploy it)
-  const API_URL = "https://rim-portfolio.onrender.com/ap" ;
+  const API_URL = "https://rim-portfolio.onrender.com/api" ;
   const projectsGrid = document.querySelector(".projects-grid");
 
   // Only allow normal web links, so a bad value in the database can't run code
