@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function loadProjects() {
     try {
-      const response = await fetch(`${API_URL}/projects`);;
+      const response = await fetch(`${API_URL}/projects`);
       if (!response.ok) throw new Error("Could not load projects");
       const projects = await response.json();
       if (!Array.isArray(projects) || projects.length === 0) return;
@@ -200,13 +200,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // Send the message to the backend, which saves it in MongoDB
-     const response = await fetch(`${API_URL}/contact`), {
-        method: "POST",
-        headers: {
-          "Content-Type" : "application/json" 
-        },
-        body: JSON.stringify({ name, email, message }),
-      });
+   
+const response = await fetch(`${API_URL}/contact`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ name, email, message })
+});
+
       if (!response.ok) throw new Error("Server rejected the message");
 
       formStatus.textContent = "Thank you! Your message was sent.";
