@@ -184,8 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (message.length < 10) { showError("message", "Please write at least 10 characters."); isValid = false; }
     return isValid;
   }
-
-  form.addEventListener("submit", async (event) => {
+    form.addEventListener("submit", async (event) => {
     event.preventDefault();  // stop the page from reloading
     const name = form.name.value.trim();
     const email = form.email.value.trim();
@@ -205,12 +204,6 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
       });
-      if (!response.ok) throw new Error("Server rejected the message");
-
-      formStatus.textContent = "Thank you! Your message was sent.";
-      form.reset();
-    } catch (error) {
-
       if (!response.ok) throw new Error("Server rejected the message");
 
       formStatus.textContent = "Thank you! Your message was sent.";
