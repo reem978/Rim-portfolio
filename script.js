@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // Send the message to the backend, which saves it in MongoDB
-     const response = await fetch(`${API_URL}/contact`); {
+     const response = await fetch(`${API_URL}/contact`), {
         method: "POST",
         headers: {
           "Content-Type" : "application/json" 
